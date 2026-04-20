@@ -8,6 +8,12 @@ import { UsersModule } from './users/users.module';
 import { PatientsModule } from './patients/patients.module';
 import { User } from './entities/user.entity';
 import { Patient } from './entities/patient.entity';
+import { Gender } from './entities/gender.entity';
+import { GenderModule } from './gender/gender.module';
+import { Contact } from './entities/contact.entity';
+import { Medical } from './entities/medical.entity';
+import { Emergency } from './entities/emergency.entity';
+import { Register } from './entities/register.entity';
 
 @Module({
   imports: [
@@ -18,12 +24,13 @@ import { Patient } from './entities/patient.entity';
       username: 'postgres',
       password: 'postgresql',
       database: 'patientdb',
-      entities: [User, Patient],
+      entities: [User, Patient, Gender, Contact, Medical, Emergency, Register],
       autoLoadEntities: true,
       synchronize: false
     }),
     UsersModule,
     PatientsModule,
+    GenderModule,
   ],
   controllers: [AppController],
   providers: [AppService],

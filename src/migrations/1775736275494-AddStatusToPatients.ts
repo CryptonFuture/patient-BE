@@ -6,7 +6,7 @@ export class AddStatusToPatients1775736275494 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
             ALTER TABLE "patients" 
-            ADD COLUMN "status" character varying NOT NULL DEFAULT 'Active'`
+            ADD COLUMN "status" boolean NOT NULL DEFAULT true`
         );
     }
 

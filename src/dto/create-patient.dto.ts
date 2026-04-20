@@ -1,3 +1,4 @@
+import { Transform } from 'class-transformer'
 import {
     IsString,
     IsEmail,
@@ -7,32 +8,33 @@ import {
     Min,
     IsDateString,
     Matches,
-    IsIn
+    IsIn,
+    IsBoolean
 } from 'class-validator'
 
 export class CreatePatientDto {
     @IsString()
-    @IsNotEmpty()
+    @IsNotEmpty({ message: 'firstname is required' })
     firstname: string
 
     @IsString()
-    @IsNotEmpty()
+    @IsNotEmpty({ message: 'lastname is required' })
     lastname: string
 
     @IsString()
-    @IsNotEmpty()
+    @IsNotEmpty({ message: 'gender is required' })
     gender: string
-    
+
     @IsString()
-    @IsNotEmpty()
+    @IsNotEmpty({ message: 'maritalStatus is required' })
     maritalStatus: string
 
     @IsString()
-    @IsNotEmpty()
+    @IsNotEmpty({ message: 'address is required' })
     address: string
 
     @IsDateString()
-    @IsNotEmpty()
+    @IsNotEmpty({ message: 'dateOfBirth is required' })
     dateOfBirth: string
 
     @IsString()
@@ -42,25 +44,97 @@ export class CreatePatientDto {
     cnic: string
 
     @IsString()
+    @IsNotEmpty({ message: 'phone no is required' })
     @Matches(/^03[0-9]{9}$/, {
         message: 'Phone number must be valid (e.g. 03XXXXXXXXX)'
     })
     phone: string
 
+    @IsString()
+    @IsOptional()
+    @Matches(/^03[0-9]{9}$/, {
+        message: 'Phone number must be valid (e.g. 03XXXXXXXXX)'
+    })
+    alternatePhone: string
+
     @IsEmail()
+    @IsNotEmpty({ message: 'email is required' })
     email: string
+
+    @IsString()
+    @IsOptional()
+    city: string
+
+    @IsString()
+    @IsOptional()
+    country: string
+
+    @IsString()
+    @IsOptional()
+    bloodGroup: string
+
+    @IsString()
+    @IsOptional()
+    height: string
+
+    @IsString()
+    @IsOptional()
+    weight: string
+
+    @IsString()
+    @IsOptional()
+    allergies: string
+
+    @IsString()
+    @IsOptional()
+    diseases: string
+
+    @IsString()
+    @IsOptional()
+    medications: string
+
+    @IsString()
+    @IsOptional()
+    patientType: string
+
+    @IsString()
+    @IsOptional()
+    department: string
+
+    @IsString()
+    @IsOptional()
+    assignedDoctor: string
+
+    @IsString()
+    @IsOptional()
+    registerDate: string
+
+    @IsString()
+    @IsOptional()
+    emergencyName: string
+
+    @IsString()
+    @IsOptional()
+    emergencyNumber: string
+
+    @IsString()
+    @IsOptional()
+    insuranceProvider: string
+
+    @IsString()
+    @IsOptional()
+    occupation: string
 
     @IsOptional()
     @IsNumber()
     @Min(0)
+    @IsNotEmpty({ message: 'age is required' })
     age?: number
 
     @IsOptional()
-    @IsString()
-    @IsIn(['Active', 'Inactive'], {
-        message: 'Status must be Active or Inactive'
-    })
-    status?: string
-    
+    @Transform(({ value }) => value === 'Active' || value === true)
+    @IsBoolean()
+    status?: boolean;
+
 
 }
