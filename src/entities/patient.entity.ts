@@ -1,4 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToOne } from 'typeorm'
+import { Contact } from './contact.entity'
+import { Medical } from './medical.entity'
+import { Emergency } from './emergency.entity'
+import { Register } from './register.entity'
 
 @Entity('patients')
 
@@ -15,30 +19,32 @@ export class Patient {
     @Column()
     gender: string
 
-    @Column()
-    maritalStatus: string
-
-    @Column()
-    address: string
-
     @Column({ type: 'date' })
     dateOfBirth: Date
 
     @Column({ unique: true })
     cnic: string
 
-    @Column()
-    phone: string
-
-    @Column({unique: true})
-    email: string
-
     @Column({nullable: true})
     age: number
 
-    @Column({default: 'Active'})
-    status: string
+    @Column({default: true})
+    status: boolean
 
     @CreateDateColumn()
     createdAt: Date
+
+    @OneToOne(() => Medical, (medical) => medical.patient, {cascade: true})
+    medical: Medical
+
+    @OneToOne(() => Contact, (contact) => contact.patient, {cascade: true})
+    contact: Contact
+
+    @OneToOne(() => Emergency, (emergency) => emergency.patient, {cascade: true})
+    emergency: Emergency
+
+    @OneToOne(() => Register, (registration) => registration.patient, {cascade: true})
+    registration: Register
+
+   
 }

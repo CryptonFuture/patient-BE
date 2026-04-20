@@ -18,8 +18,8 @@ export class PatientsController {
     constructor(private readonly patientService: PatientsService) {}
 
     @Post()
-    create(@Body() dto: CreatePatientDto) {
-        return this.patientService.create(dto)
+    async createPatient(@Body() dto: CreatePatientDto) {
+        return await this.patientService.create(dto)
     }
 
     @Get()
@@ -30,6 +30,11 @@ export class PatientsController {
     @Get(':id')
     findOne(@Param('id', ParseIntPipe) id: number) {
         return this.patientService.findOne(id)
+    }
+
+    @Get(':id')
+    findById(@Param('id', ParseIntPipe) id: number) {
+        return this.patientService.findById(id)
     }
 
     @Put(':id')
