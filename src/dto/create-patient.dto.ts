@@ -22,22 +22,23 @@ export class CreatePatientDto {
     lastname: string
 
     @IsString()
-    @IsNotEmpty({ message: 'gender is required' })
+    @IsOptional()
     gender: string
 
     @IsString()
-    @IsNotEmpty({ message: 'maritalStatus is required' })
+    @IsOptional()
     maritalStatus: string
 
     @IsString()
-    @IsNotEmpty({ message: 'address is required' })
+    @IsOptional()
     address: string
 
     @IsDateString()
-    @IsNotEmpty({ message: 'dateOfBirth is required' })
+    @IsOptional()
     dateOfBirth: string
 
     @IsString()
+    @IsNotEmpty({ message: 'cnic is required' })
     @Matches(/^[0-9]{5}-[0-9]{7}-[0-9]$/, {
         message: 'CNIC must be in format 12345-1234567-1'
     })
@@ -128,7 +129,6 @@ export class CreatePatientDto {
     @IsOptional()
     @IsNumber()
     @Min(0)
-    @IsNotEmpty({ message: 'age is required' })
     age?: number
 
     @IsOptional()
