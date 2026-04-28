@@ -18,7 +18,14 @@ import { Professional } from './entities/professional.entity';
 import { System } from './entities/systemFields.entity';
 import { Doctor } from './entities/doctor.entity';
 import { Schedule } from './entities/schedule.entity';
+import { Department } from './entities/department.entity'
 import { DoctorModule } from './doctor/doctor.module';
+import { DepartmentModule } from './department/department.module';
+import { LocationModule } from './location/location.module';
+import { Country } from './entities/country.entity';
+import { City } from './entities/city.entity';
+import { State } from './entities/state.entity';
+import { Zipcode } from './entities/zipcode.entity';
 
 @Module({
   imports: [
@@ -29,7 +36,24 @@ import { DoctorModule } from './doctor/doctor.module';
       username: 'postgres',
       password: 'postgresql',
       database: 'patientdb',
-      entities: [User, Patient, Gender, Contact, Medical, Emergency, Register, Professional, System, Doctor, Schedule],
+      entities: [
+        User, 
+        Patient, 
+        Gender, 
+        Contact, 
+        Medical, 
+        Emergency, 
+        Register, 
+        Professional, 
+        System, 
+        Doctor, 
+        Schedule, 
+        Department,
+        Country,
+        City,
+        State,
+        Zipcode
+      ],
       autoLoadEntities: true,
       synchronize: false
     }),
@@ -37,6 +61,8 @@ import { DoctorModule } from './doctor/doctor.module';
     PatientsModule,
     GenderModule,
     DoctorModule,
+    DepartmentModule,
+    LocationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
