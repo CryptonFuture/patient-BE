@@ -1,6 +1,8 @@
 import { DataSource } from 'typeorm'
 import { GenderSeed } from './gender.seed'
 import { Gender } from '../entities/gender.entity';
+import { Department } from '../entities/department.entity';
+import { DepartmentSeed } from './department.seed';
 
 const AppDataSource = new DataSource({
     type: 'postgres',
@@ -9,7 +11,7 @@ const AppDataSource = new DataSource({
     username: 'postgres',
     password: 'postgresql',
     database: 'patientdb',
-    entities: [Gender],
+    entities: [Gender, Department],
     synchronize: false,
 });
 
@@ -19,6 +21,7 @@ async function runSeed() {
      console.log('🌱 Seeding started...');
 
      await GenderSeed(AppDataSource)
+     await DepartmentSeed(AppDataSource)
 
      console.log('🌱 Seeding completed!');
      process.exit(0)
