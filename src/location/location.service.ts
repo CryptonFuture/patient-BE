@@ -15,24 +15,72 @@ export class LocationService {
 
 
     getCountries() {
-        return this.countryRepo.find()
+        return this.countryRepo.find({
+             select: {
+                id: true,
+                name: true,
+                code: true
+            }
+        })
     }
 
-    getStates(countryId: number) {
+    getStates(country_id: any) {
         return this.stateRepo.find({
-            where: { country: { id: countryId } }
-        })
+            where: { country: { id: country_id } },
+            relations: ['country'],
+            select: {
+                id: true,
+                name: true,
+                country: {
+                    id: true
+                }
+            }
+        }).then(states => 
+            states.map(s => ({
+                id: s.id,
+                name: s.name,
+                country_id: s.country.id
+            }))
+        )
     }
 
-    getCities(stateId: number) {
+    getCities(state_id: any) {
         return this.cityRepo.find({
-            where: { state: { id: stateId } }
-        })
+            where: { state: { id: state_id } },
+            relations: ['state'],
+            select: {
+                id: true,
+                name: true,
+                state: {
+                    id: true
+                }
+            }
+        }).then(cities => 
+            cities.map(s => ({
+                id: s.id,
+                name: s.name,
+                state_id: s.state.id
+            }))
+        )
     }
 
-     getZipcodes(cityId: number) {
+     getZipcodes(city_id: any) {
         return this.zipcodeRepo.find({
-            where: { city: { id: cityId } }
-        })
+            where: { city: { id: city_id } },
+            relations: ['city'],
+            select: {
+                id: true,
+                code: true,
+                city: {
+                    id: true
+                }
+            }
+        }).then(zipcodes => 
+            zipcodes.map(s => ({
+                id: s.id,
+                name: s.code,
+                city_id: s.city.id
+            }))
+        )
     }
 }

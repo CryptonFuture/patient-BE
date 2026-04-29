@@ -20,18 +20,18 @@ export class LocationController {
         return this.locService.getCountries()
     }
 
-    @Get('states/:countryId')
-    getStates(@Param('countryId') id: number) {
-        return this.locService.getStates(+id)
+    @Get('states/:country_id')
+    getStates(@Param('country_id', ParseIntPipe) country_id: any) {
+        return this.locService.getStates(country_id)
     }
 
-    @Get('cities/:stateId')
-    getCities(@Param('stateId') id: number) {
-        return this.locService.getCities(+id)
+    @Get('cities/:state_id')
+    getCities(@Param('state_id', ParseIntPipe) state_id: any) {
+        return this.locService.getCities(state_id)
     }
 
-    @Get('zipcodes/:cityId')
-    getZipcodes(@Param('cityId') id: number) {
-        return this.locService.getZipcodes(+id)
+    @Get('zipcodes/:city_id')
+    getZipcodes(@Param('city_id', ParseIntPipe) city_id: any) {
+        return this.locService.getZipcodes(city_id)
     }
 }

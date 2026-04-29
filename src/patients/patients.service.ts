@@ -74,6 +74,8 @@ export class PatientsService {
                     alternatePhone: dto.alternatePhone,
                     city: dto.city,
                     country: dto.country,
+                    state: dto.state,
+                    zipcode: dto.zipcode,
                     email: dto.email,
                     address: dto.address,
                     patient: savedPatient
