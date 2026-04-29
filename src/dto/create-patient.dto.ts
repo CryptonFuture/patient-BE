@@ -68,6 +68,14 @@ export class CreatePatientDto {
 
     @IsString()
     @IsOptional()
+    state: string
+
+    @IsString()
+    @IsOptional()
+    zipcode: string
+
+    @IsString()
+    @IsOptional()
     country: string
 
     @IsString()

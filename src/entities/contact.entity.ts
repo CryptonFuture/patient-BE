@@ -19,6 +19,12 @@ export class Contact {
     @Column()
     country: string
 
+    @Column()
+    state: string
+
+    @Column()
+    zipcode: string
+
     @Column({unique: true})
     email: string
 
