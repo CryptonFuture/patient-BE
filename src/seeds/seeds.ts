@@ -3,6 +3,8 @@ import { GenderSeed } from './gender.seed'
 import { Gender } from '../entities/gender.entity';
 import { Department } from '../entities/department.entity';
 import { DepartmentSeed } from './department.seed';
+import { PatientTypeSeed } from './patient-type.seed';
+import { PatientType } from '../entities/patientType.entity';
 
 const AppDataSource = new DataSource({
     type: 'postgres',
@@ -11,7 +13,7 @@ const AppDataSource = new DataSource({
     username: 'postgres',
     password: 'postgresql',
     database: 'patientdb',
-    entities: [Gender, Department],
+    entities: [Gender, Department, PatientType],
     synchronize: false,
 });
 
@@ -22,6 +24,7 @@ async function runSeed() {
 
      await GenderSeed(AppDataSource)
      await DepartmentSeed(AppDataSource)
+     await PatientTypeSeed(AppDataSource)
 
      console.log('🌱 Seeding completed!');
      process.exit(0)

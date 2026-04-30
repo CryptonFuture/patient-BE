@@ -16,6 +16,7 @@ import { City } from './entities/city.entity'
 import { Country } from './entities/country.entity'
 import { State } from './entities/state.entity'
 import { Zipcode } from './entities/zipcode.entity'
+import { PatientType } from './entities/patientType.entity'
 
 export const AppDataSource = new DataSource({
     type: 'postgres',
@@ -40,7 +41,8 @@ export const AppDataSource = new DataSource({
         City,
         Country,
         State,
-        Zipcode
+        Zipcode,
+        PatientType
     ],
     migrations: ['src/migrations/*.ts'],
     synchronize: false,
