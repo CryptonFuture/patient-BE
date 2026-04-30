@@ -26,6 +26,8 @@ import { Country } from './entities/country.entity';
 import { City } from './entities/city.entity';
 import { State } from './entities/state.entity';
 import { Zipcode } from './entities/zipcode.entity';
+import { PatientTypeModule } from './patient-type/patient-type.module';
+import { PatientType } from './entities/patientType.entity';
 
 @Module({
   imports: [
@@ -52,7 +54,8 @@ import { Zipcode } from './entities/zipcode.entity';
         Country,
         City,
         State,
-        Zipcode
+        Zipcode,
+        PatientType
       ],
       autoLoadEntities: true,
       synchronize: false
@@ -63,6 +66,7 @@ import { Zipcode } from './entities/zipcode.entity';
     DoctorModule,
     DepartmentModule,
     LocationModule,
+    PatientTypeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
