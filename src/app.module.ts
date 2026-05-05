@@ -28,6 +28,10 @@ import { State } from './entities/state.entity';
 import { Zipcode } from './entities/zipcode.entity';
 import { PatientTypeModule } from './patient-type/patient-type.module';
 import { PatientType } from './entities/patientType.entity';
+import { BloodgroupModule } from './bloodgroup/bloodgroup.module';
+import { BloodGroup } from './entities/bloodGroup.entity';
+import { DiseasesModule } from './diseases/diseases.module';
+import { Diseases } from './entities/diseases.entity';
 
 @Module({
   imports: [
@@ -55,7 +59,9 @@ import { PatientType } from './entities/patientType.entity';
         City,
         State,
         Zipcode,
-        PatientType
+        PatientType,
+        BloodGroup,
+        Diseases
       ],
       autoLoadEntities: true,
       synchronize: false
@@ -67,6 +73,8 @@ import { PatientType } from './entities/patientType.entity';
     DepartmentModule,
     LocationModule,
     PatientTypeModule,
+    BloodgroupModule,
+    DiseasesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
